@@ -34,7 +34,7 @@ public final class MerkleTools {
         if (index < 0 || index > (tree.leaves.count - 1)) {
             return nil
         } else {
-            return self.tree.leaves[index]
+            return tree.leaves[index]
         }
     }
     
@@ -68,24 +68,25 @@ public final class MerkleTools {
     }
     
     // Returns the proof for a leaf at the given index as an array of merkle siblings in hex format
-    func getProof(index: inout Int) -> [(String, String)]? {
+    func getProof(index: Int) -> [(String, String)]? {
+        var currentIndex = index
         if !tree.isReady {
             return nil
         }
         let currentRowIndex = tree.levels.count - 1
-        if index < 0 || index > tree.levels[currentRowIndex].count - 1 {
+        if currentIndex < 0 || currentIndex > tree.levels[currentRowIndex].count - 1 {
             return nil
         }
         var proof: [(String, String)] = []
         for x in stride(from: currentRowIndex, to: 0, by: -1) {
             let currentLevelNodeCount = tree.levels[x].count
-            if index == currentLevelNodeCount - 1 && currentLevelNodeCount % 2 == 1 {
-                index = Int(floor(Double(index) / 2))
+            if currentIndex == currentLevelNodeCount - 1 && currentLevelNodeCount % 2 == 1 {
+                currentIndex = Int(floor(Double(currentIndex) / 2))
                 continue
             }
             
-            let isRightNode = (index % 2) == 1
-            let siblingIndex = isRightNode ? (index - 1) : (index + 1)
+            let isRightNode = (currentIndex % 2) == 1
+            let siblingIndex = isRightNode ? (currentIndex - 1) : (currentIndex + 1)
             var sibling: (String, String)
             let siblingPosition = isRightNode ? "left" : "right"
             let siblingValue = tree.levels[x][siblingIndex].hexEncodedString()
@@ -93,7 +94,7 @@ public final class MerkleTools {
             
             proof.append(sibling)
             
-            index = Int(floor(Double(index) / 2))
+            currentIndex = Int(floor(Double(currentIndex) / 2))
         }
         return proof
     }
@@ -103,18 +104,22 @@ public final class MerkleTools {
             return targetHash.hexEncodedString() == merkleRoot.hexEncodedString()
         }
         var proofHash = targetHash
-        for x in stride(from: 0, to: proof.count, by: 1) {
+        for x in 0..<proof.count {
             if proof[x].0 == "left" {
+                var combinedData = hexStringToData(hex: proof[x].1)
+                combinedData.append(proofHash)
                 if doubleHash {
-                    proofHash = sha256(data: sha256(data: proof[x].0.data(using: .utf8)! + proofHash))
+                    proofHash = sha256(data: sha256(data: combinedData))
                 } else {
-                    proofHash = sha256(data: proof[x].0.data(using: .utf8)! + proofHash)
+                    proofHash = sha256(data: combinedData)
                 }
             } else if proof[x].0 == "right" {
+                var combinedData = proofHash
+                combinedData.append(hexStringToData(hex: proof[x].1))
                 if doubleHash {
-                    proofHash = sha256(data: sha256(data: proofHash + proof[x].0.data(using: .utf8)!))
+                    proofHash = sha256(data: sha256(data: combinedData))
                 } else {
-                    proofHash = sha256(data: proofHash + proof[x].0.data(using: .utf8)!)
+                    proofHash = sha256(data: combinedData)
                 }
             } else {
                 return false
@@ -122,14 +127,6 @@ public final class MerkleTools {
         }
         
         return proofHash.hexEncodedString() == merkleRoot.hexEncodedString()
-    }
-    
-    func sha256(data : Data) -> Data {
-        var hash = [UInt8](repeating: 0,  count: Int(CC_SHA256_DIGEST_LENGTH))
-        data.withUnsafeBytes {
-            _ = CC_SHA256($0.baseAddress, CC_LONG(data.count), &hash)
-        }
-        return Data(hash)
     }
     
     // Calculates the next level of node when building the merkle tree
@@ -152,7 +149,47 @@ public final class MerkleTools {
         return nodes
     }
     
+    func sha256(data : Data) -> Data {
+        var hash = [UInt8](repeating: 0,  count: Int(CC_SHA256_DIGEST_LENGTH))
+        data.withUnsafeBytes {
+            _ = CC_SHA256($0.baseAddress, CC_LONG(data.count), &hash)
+        }
+        return Data(hash)
+    }
     
+    func hexStringToData(hex: String) -> Data {
+        var hex = hex
+        var data = Data()
+        while(hex.count > 0) {
+            let subIndex = hex.index(hex.startIndex, offsetBy: 2)
+            let c = String(hex[..<subIndex])
+            hex = String(hex[subIndex...])
+            var ch: UInt64 = 0
+            Scanner(string: c).scanHexInt64(&ch)
+            var char = UInt8(ch)
+            data.append(&char, count: 1)
+        }
+        return data
+    }
+    
+    class MerkleTree: Equatable {
+        static func == (lhs: MerkleTree, rhs: MerkleTree) -> Bool {
+            if lhs.isReady != rhs.isReady {
+                return false
+            }
+            if lhs.leaves != rhs.leaves {
+                return false
+            }
+            if lhs.levels != rhs.levels {
+                 return false
+            }
+            return true
+        }
+        
+        var leaves: [Data] = []
+        var levels: [[Data]] = []
+        var isReady: Bool = false
+    }
 }
 
 extension Data {
