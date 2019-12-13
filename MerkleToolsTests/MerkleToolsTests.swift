@@ -10,25 +10,21 @@ import XCTest
 @testable import MerkleTools
 
 class MerkleToolsTests: XCTestCase {
+    
+    var merkleTools: MerkleTools!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        merkleTools = MerkleTools()
     }
-
+    
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        merkleTools = MerkleTools()
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testAddLeaf() {
+        let leafValue = "This is a test leaf"
+        let leaf = merkleTools.sha256(data: leafValue.data(using: .utf8)!)
+        merkleTools.addLeaf(value: leafValue, doHash: true)
+        XCTAssertEqual(merkleTools.getLeaf(index: 0), leaf)
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

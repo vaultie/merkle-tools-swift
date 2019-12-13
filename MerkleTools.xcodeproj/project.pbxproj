@@ -16,6 +16,8 @@
 		B2F3F25C23A4014000A19413 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2F3F25B23A4014000A19413 /* Assets.xcassets */; };
 		B2F3F25F23A4014000A19413 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2F3F25E23A4014000A19413 /* Preview Assets.xcassets */; };
 		B2F3F26223A4014000A19413 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F3F26023A4014000A19413 /* LaunchScreen.storyboard */; };
+		B2F3F26823A4039000A19413 /* MerkleTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F3F26723A4039000A19413 /* MerkleTools.swift */; };
+		B2F3F26C23A4042700A19413 /* MerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F3F26B23A4042700A19413 /* MerkleTree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,8 @@
 		B2F3F25E23A4014000A19413 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B2F3F26123A4014000A19413 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2F3F26323A4014000A19413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2F3F26723A4039000A19413 /* MerkleTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTools.swift; sourceTree = "<group>"; };
+		B2F3F26B23A4042700A19413 /* MerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 			children = (
 				B2F3F23823A4008D00A19413 /* MerkleTools.h */,
 				B2F3F23923A4008D00A19413 /* Info.plist */,
+				B2F3F26723A4039000A19413 /* MerkleTools.swift */,
+				B2F3F26B23A4042700A19413 /* MerkleTree.swift */,
 			);
 			path = MerkleTools;
 			sourceTree = "<group>";
@@ -210,6 +216,7 @@
 				TargetAttributes = {
 					B2F3F23423A4008D00A19413 = {
 						CreatedOnToolsVersion = 11.2.1;
+						LastSwiftMigration = 1120;
 					};
 					B2F3F23D23A4008D00A19413 = {
 						CreatedOnToolsVersion = 11.2.1;
@@ -271,6 +278,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2F3F26823A4039000A19413 /* MerkleTools.swift in Sources */,
+				B2F3F26C23A4042700A19413 /* MerkleTree.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +446,7 @@
 		B2F3F24A23A4008D00A19413 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -452,6 +462,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = vaultie.MerkleTools;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -460,6 +471,7 @@
 		B2F3F24B23A4008D00A19413 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -483,6 +495,7 @@
 		B2F3F24D23A4008D00A19413 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MerkleToolsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -500,6 +513,7 @@
 		B2F3F24E23A4008D00A19413 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MerkleToolsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
