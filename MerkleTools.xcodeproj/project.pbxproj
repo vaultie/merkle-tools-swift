@@ -10,12 +10,6 @@
 		B2F3F23F23A4008D00A19413 /* MerkleTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F3F23523A4008D00A19413 /* MerkleTools.framework */; };
 		B2F3F24423A4008D00A19413 /* MerkleToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F3F24323A4008D00A19413 /* MerkleToolsTests.swift */; };
 		B2F3F24623A4008D00A19413 /* MerkleTools.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F3F23823A4008D00A19413 /* MerkleTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B2F3F25623A4013C00A19413 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F3F25523A4013C00A19413 /* AppDelegate.swift */; };
-		B2F3F25823A4013C00A19413 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F3F25723A4013C00A19413 /* SceneDelegate.swift */; };
-		B2F3F25A23A4013C00A19413 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F3F25923A4013C00A19413 /* ContentView.swift */; };
-		B2F3F25C23A4014000A19413 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2F3F25B23A4014000A19413 /* Assets.xcassets */; };
-		B2F3F25F23A4014000A19413 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2F3F25E23A4014000A19413 /* Preview Assets.xcassets */; };
-		B2F3F26223A4014000A19413 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F3F26023A4014000A19413 /* LaunchScreen.storyboard */; };
 		B2F3F26823A4039000A19413 /* MerkleTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F3F26723A4039000A19413 /* MerkleTools.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,13 +31,6 @@
 		B2F3F24323A4008D00A19413 /* MerkleToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleToolsTests.swift; sourceTree = "<group>"; };
 		B2F3F24523A4008D00A19413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2F3F25323A4013C00A19413 /* MerkleToolsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MerkleToolsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2F3F25523A4013C00A19413 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B2F3F25723A4013C00A19413 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B2F3F25923A4013C00A19413 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B2F3F25B23A4014000A19413 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B2F3F25E23A4014000A19413 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B2F3F26123A4014000A19413 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B2F3F26323A4014000A19413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2F3F26723A4039000A19413 /* MerkleTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTools.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,7 +65,6 @@
 			children = (
 				B2F3F23723A4008D00A19413 /* MerkleTools */,
 				B2F3F24223A4008D00A19413 /* MerkleToolsTests */,
-				B2F3F25423A4013C00A19413 /* MerkleToolsExample */,
 				B2F3F23623A4008D00A19413 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -110,28 +96,6 @@
 				B2F3F24523A4008D00A19413 /* Info.plist */,
 			);
 			path = MerkleToolsTests;
-			sourceTree = "<group>";
-		};
-		B2F3F25423A4013C00A19413 /* MerkleToolsExample */ = {
-			isa = PBXGroup;
-			children = (
-				B2F3F25523A4013C00A19413 /* AppDelegate.swift */,
-				B2F3F25723A4013C00A19413 /* SceneDelegate.swift */,
-				B2F3F25923A4013C00A19413 /* ContentView.swift */,
-				B2F3F25B23A4014000A19413 /* Assets.xcassets */,
-				B2F3F26023A4014000A19413 /* LaunchScreen.storyboard */,
-				B2F3F26323A4014000A19413 /* Info.plist */,
-				B2F3F25D23A4014000A19413 /* Preview Content */,
-			);
-			path = MerkleToolsExample;
-			sourceTree = "<group>";
-		};
-		B2F3F25D23A4014000A19413 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				B2F3F25E23A4014000A19413 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +226,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2F3F26223A4014000A19413 /* LaunchScreen.storyboard in Resources */,
-				B2F3F25F23A4014000A19413 /* Preview Assets.xcassets in Resources */,
-				B2F3F25C23A4014000A19413 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,9 +252,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2F3F25623A4013C00A19413 /* AppDelegate.swift in Sources */,
-				B2F3F25823A4013C00A19413 /* SceneDelegate.swift in Sources */,
-				B2F3F25A23A4013C00A19413 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,17 +264,6 @@
 			targetProxy = B2F3F24023A4008D00A19413 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		B2F3F26023A4014000A19413 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B2F3F26123A4014000A19413 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B2F3F24723A4008D00A19413 /* Debug */ = {
