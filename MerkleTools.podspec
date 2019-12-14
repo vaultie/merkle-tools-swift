@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
   spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.author       = { "Nikita Plakhotin" => "nikita.plakhotin@gmail.com" }
 
-  spec.ios.deployment_target = "12.1"
+  spec.ios.deployment_target = "11.0"
   spec.swift_version = "5.1.2"
 
   spec.source        = { :git => "https://github.com/vaultie/merkle-tools-swift.git", :tag => "#{spec.version}" }
