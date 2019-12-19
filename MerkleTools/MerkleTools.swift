@@ -9,13 +9,17 @@
 import Foundation
 
 public final class MerkleTools {
-    var tree: MerkleTree = MerkleTree()
+    var tree: MerkleTree!
     
-    func resetTree() {
+    public init() {
+       tree = MerkleTree()
+    }
+    
+    public func resetTree() {
         tree = MerkleTree()
     }
     
-    func addLeaf(value: String, doHash: Bool) {
+    public func addLeaf(value: String, doHash: Bool) {
         tree.isReady = false
         var leafData: Data? = value.data(using: .utf8)
         if doHash {
@@ -24,13 +28,13 @@ public final class MerkleTools {
         tree.leaves.append(leafData!)
     }
     
-    func addLeaves(valuesArray: [String], doHash: Bool) {
+    public func addLeaves(valuesArray: [String], doHash: Bool) {
         for value in valuesArray {
             addLeaf(value: value, doHash: doHash)
         }
     }
     
-    func getLeaf(index: Int) -> Data? {
+    public func getLeaf(index: Int) -> Data? {
         if (index < 0 || index > (tree.leaves.count - 1)) {
             return nil
         } else {
@@ -38,15 +42,15 @@ public final class MerkleTools {
         }
     }
     
-    func getLeafCount() -> Int {
+    public func getLeafCount() -> Int {
         return tree.leaves.count
     }
     
-    func getTreeReadyState() -> Bool {
+    public func getTreeReadyState() -> Bool {
         return tree.isReady
     }
     
-    func makeTree(doubleHash: Bool) {
+    public func makeTree(doubleHash: Bool) {
         tree.isReady = false
         let leafCount = tree.leaves.count
         if leafCount > 0 {
@@ -59,7 +63,7 @@ public final class MerkleTools {
         tree.isReady = true
     }
     
-    func getMerkleRoot() -> Data? {
+    public func getMerkleRoot() -> Data? {
         if !tree.isReady || tree.levels.count == 0 {
             return nil
         } else {
@@ -68,7 +72,7 @@ public final class MerkleTools {
     }
     
     // Returns the proof for a leaf at the given index as an array of merkle siblings in hex format
-    func getProof(index: Int) -> [(String, String)]? {
+    public func getProof(index: Int) -> [(String, String)]? {
         var currentIndex = index
         if !tree.isReady {
             return nil
@@ -99,7 +103,7 @@ public final class MerkleTools {
         return proof
     }
     
-    func validateProof(proof: [(String, String)], targetHash: Data, merkleRoot: Data, doubleHash: Bool) -> Bool {
+    public func validateProof(proof: [(String, String)], targetHash: Data, merkleRoot: Data, doubleHash: Bool) -> Bool {
         if (proof.count == 0) {
             return targetHash.hexEncodedString() == merkleRoot.hexEncodedString()
         }
@@ -131,7 +135,7 @@ public final class MerkleTools {
     
     // Calculates the next level of node when building the merkle tree
     // These values are calcalated off of the current highest level, level 0 and will be prepended to the levels array
-    func calculateNextLevel(doubleHash: Bool) -> [Data] {
+    public func calculateNextLevel(doubleHash: Bool) -> [Data] {
         var nodes: [Data] = []
         let topLevel = tree.levels[0]
         let topLevelCount = topLevel.count
@@ -149,7 +153,7 @@ public final class MerkleTools {
         return nodes
     }
     
-    func sha256(data : Data) -> Data {
+    public func sha256(data : Data) -> Data {
         var hash = [UInt8](repeating: 0,  count: Int(CC_SHA256_DIGEST_LENGTH))
         data.withUnsafeBytes {
             _ = CC_SHA256($0.baseAddress, CC_LONG(data.count), &hash)
@@ -157,7 +161,7 @@ public final class MerkleTools {
         return Data(hash)
     }
     
-    func hexStringToData(hex: String) -> Data {
+    public func hexStringToData(hex: String) -> Data {
         var hex = hex
         var data = Data()
         while(hex.count > 0) {
